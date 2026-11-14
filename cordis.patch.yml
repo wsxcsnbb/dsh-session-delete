@@ -1,0 +1,14 @@
+# dsh-session-delete bundle patch
+#
+# The bundle channel's whole contribution to the profile tree: one `insert`
+# of this package's plugin row. `dsh.profile.bundles` lists the package, this
+# patch mounts the Host half (the browser half rides `dsh.client`).
+#
+# No aggregate double-mount guard: this package is mounted by nothing else, so
+# an enabled row here is always the only one. `dsh plugin --profile <name> add`
+# keeps `dsh.profile.bundles` reconciled with installed packages; when the
+# package is installed by hand (a `link:` dependency, as in this profile), the
+# bundle stack must list it manually.
+- insert:
+    - id: session-delete
+      name: 'dsh-session-delete'
